@@ -183,20 +183,24 @@ export const mockApi = {
     return { ...student, initialPassword: randomPassword() };
   },
 
-  // -------------------- PUT /api/students/:id (modif + reset mdp) --------------------
-  // Le contrat officiel n'a qu'une seule route PUT pour l'étudiant : on y regroupe
-  // modification d'identité et réinitialisation de mot de passe, distinguées par
-  // la présence ou non du champ `resetPassword` dans le body.
+  // -------------------- PUT /api/students/:id (modif identité uniquement) --------------------
   async updateStudent(id, data) {
     await delay();
     requireRole("admin");
     const student = findOr404(students, (s) => s.id === id, "Étudiant introuvable.");
-    if (data.resetPassword) {
-      return { ...student, initialPassword: randomPassword() };
-    }
     if (data.name !== undefined) student.name = data.name;
     if (data.email !== undefined) student.email = data.email;
     return student;
+  },
+
+  // -------------------- POST /api/students/:id/reset-password (extension documentée) ------
+  // Route séparée : action avec effet de bord (génère un mot de passe), pas une simple
+  // mise à jour de champ — décision actée avec l'équipe backend, cf exam-hub-api-contract.md
+  async resetStudentPassword(id) {
+    await delay();
+    requireRole("admin");
+    const student = findOr404(students, (s) => s.id === id, "Étudiant introuvable.");
+    return { ...student, initialPassword: randomPassword() };
   },
 
   // -------------------- DELETE /api/students/:id (= désactivation, RG-10) ------------
@@ -464,5 +468,20 @@ export const mockApi = {
         totalPoints: a.totalPoints,
         submittedAt: a.submittedAt,
       }));
+  },
+
+  // -------------------- GET /api/my/results/:attemptId (extension documentée) --------------
+  // Permet de revoir la correction complète d'une tentative passée depuis l'historique,
+  // même après avoir fermé l'onglet où le résultat a été affiché la première fois.
+  // Décision actée avec l'équipe backend, cf exam-hub-api-contract.md
+  async getMyResultDetail(attemptId) {
+    await delay();
+    requireRole("student");
+    const attempt = attempts[attemptId];
+    if (!attempt) throw new ApiError(404, "Tentative introuvable.");
+    if (attempt.studentId !== currentUser.id) {
+      throw new ApiError(403, "Accès refusé à cette tentative.");
+    }
+    return attempt;
   },
 };

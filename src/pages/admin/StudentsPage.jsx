@@ -1,7 +1,13 @@
 // src/pages/admin/StudentsPage.jsx
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { getStudents, createStudent, updateStudent, deleteStudent } from '../../api/students.api';
+import {
+  getStudents,
+  createStudent,
+  updateStudent,
+  resetStudentPassword,
+  deleteStudent,
+} from '../../api/students.api';
 
 export default function StudentsPage() {
   const { token } = useAuth();
@@ -85,7 +91,7 @@ export default function StudentsPage() {
   async function handleResetPassword(id) {
     setError(null);
     try {
-      const result = await updateStudent(id, { resetPassword: true }, token);
+      const result = await resetStudentPassword(id, token);
       setResetPasswordInfo({ id, password: result.initialPassword });
     } catch (err) {
       setError(err.message);
