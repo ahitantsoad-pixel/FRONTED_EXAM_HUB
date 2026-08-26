@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './routes/ProtectedRoute';
 import RoleRoute from './routes/RoleRoute';
+import ProtectedLayout from './components/layout/ProtectedLayout';
 
 import LoginPage from './pages/LoginPage';
 
@@ -28,22 +29,24 @@ export default function App() {
 
           {/* Toutes les routes ci-dessous nécessitent d'être connecté */}
           <Route element={<ProtectedRoute />}>
-            {/* Espace admin */}
-            <Route element={<RoleRoute role="admin" />}>
-              <Route path="/admin" element={<DashboardPage />} />
-              <Route path="/admin/students" element={<StudentsPage />} />
-              <Route path="/admin/courses" element={<CoursesPage />} />
-              <Route path="/admin/exams" element={<ExamsPage />} />
-              <Route path="/admin/exams/:id/questions" element={<ExamQuestionsPage />} />
-              <Route path="/admin/exams/:id/results" element={<ExamResultsPage />} />
-            </Route>
+            <Route element={<ProtectedLayout />}>
+              {/* Espace admin */}
+              <Route element={<RoleRoute role="admin" />}>
+                <Route path="/admin" element={<DashboardPage />} />
+                <Route path="/admin/students" element={<StudentsPage />} />
+                <Route path="/admin/courses" element={<CoursesPage />} />
+                <Route path="/admin/exams" element={<ExamsPage />} />
+                <Route path="/admin/exams/:id/questions" element={<ExamQuestionsPage />} />
+                <Route path="/admin/exams/:id/results" element={<ExamResultsPage />} />
+              </Route>
 
-            {/* Espace étudiant */}
-            <Route element={<RoleRoute role="student" />}>
-              <Route path="/student" element={<AvailableExamsPage />} />
-              <Route path="/student/exams/:id" element={<TakeExamPage />} />
-              <Route path="/student/exams/:id/result" element={<ExamResultPage />} />
-              <Route path="/student/results" element={<MyResultsPage />} />
+              {/* Espace étudiant */}
+              <Route element={<RoleRoute role="student" />}>
+                <Route path="/student" element={<AvailableExamsPage />} />
+                <Route path="/student/exams/:id" element={<TakeExamPage />} />
+                <Route path="/student/exams/:id/result" element={<ExamResultPage />} />
+                <Route path="/student/results" element={<MyResultsPage />} />
+              </Route>
             </Route>
           </Route>
 
