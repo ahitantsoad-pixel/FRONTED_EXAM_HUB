@@ -26,4 +26,11 @@ export async function submitExam(id, answers, token) {
 export async function getMyResults(token) {
   if (USE_MOCKS) return mockApi.getMyResults();
   return request('/my/results', { token });
+}:
+
+// route d'extension : détail complet d'une tentative passée (correction), pour revoir
+// un ancien résultat depuis l'historique (cf exam-hub-api-contract.md)
+export async function getMyResultDetail(attemptId, token) {
+  if (USE_MOCKS) return mockApi.getMyResultDetail(attemptId);
+  return request(`/my/results/${attemptId}`, { token });
 }
