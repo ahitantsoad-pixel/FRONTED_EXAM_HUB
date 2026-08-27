@@ -367,11 +367,117 @@ td a:hover {
   background: #eef2ff;
 }
 @media (max-width: 768px) {
-  /* styles appliqués seulement si l'écran fait moins de 768px de large */
+
   .app-body {
     flex-direction: column;
   }
   .sidebar {
     width: 100%;
   }
+}
+
+.exams-list {
+  list-style: none;
+  padding: 0;
+}
+
+.exam-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.exam-window {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.question-block {
+  background: white;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.question-block legend {
+  font-weight: bold;
+  color: #4338ca;
+}
+
+.choice-option {
+  display: block;
+  padding: 0.4rem 0;
+}
+
+.progress-note {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 400px;
+}
+
+.result-score {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.score-value {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #4338ca;
+}
+
+.correction-list {
+  list-style: none;
+  padding: 0;
+}
+
+.correction-correct,
+.correction-incorrect {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  border-left: 4px solid;
+}
+
+.correction-correct {
+  border-color: #16a34a;
+}
+
+.correction-incorrect {
+  border-color: #dc2626;
+}
+
+.choice-correct {
+  color: #16a34a;
+  font-weight: bold;
+}
+
+.choice-wrong {
+  color: #dc2626;
 }
