@@ -20,9 +20,13 @@ export async function updateStudent(id, data, token) {
 
 // route d'extension dédiée : reset = action avec effet de bord (génère un mdp),
 // pas une simple mise à jour de champ (cf exam-hub-api-contract.md)
-export async function resetStudentPassword(id, token) {
+export async function resetStudentPassword(id, password, token) {
   if (USE_MOCKS) return mockApi.resetStudentPassword(id);
-  return request(`/students/${id}/reset-password`, { method: 'POST', token });
+  return request(`/students/${id}/reset-password`, {
+    method: 'POST',
+    body: { password },
+    token,
+  });
 }
 
 // DELETE = désactivation (RG-10), pas une suppression physique

@@ -20,6 +20,7 @@ export default function StudentsPage() {
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [newName, setNewName] = useState('');
   const [newEmail, setNewEmail] = useState('');
+  const [newPassword, setNewPassword] = useState(''); 
   const [creating, setCreating] = useState(false);
   const [createdPassword, setCreatedPassword] = useState(null);
 
@@ -53,11 +54,12 @@ export default function StudentsPage() {
     setError(null);
     setCreating(true);
     try {
-      const created = await createStudent({ name: newName, email: newEmail }, token);
+      const created = await createStudent({ name: newName, email: newEmail, password: newPassword }, token);
       setStudents((prev) => [...prev, created]);
       setCreatedPassword(created.initialPassword ?? null);
       setNewName('');
       setNewEmail('');
+      setNewPassword('');
       setShowCreateForm(false);
     } catch (err) {
       setError(err.message);
@@ -89,14 +91,16 @@ export default function StudentsPage() {
   }
 
   async function handleResetPassword(id) {
-    setError(null);
-    try {
-      const result = await resetStudentPassword(id, token);
-      setResetPasswordInfo({ id, password: result.initialPassword });
-    } catch (err) {
-      setError(err.message);
-    }
+  const newPwd = prompt('Nouveau mot de passe pour cet étudiant (min. 8 caractères) :');
+  if (!newPwd) return;
+  setError(null);
+  try {
+    await resetStudentPassword(id, newPwd, token);
+    alert('Mot de passe réinitialisé avec succès.');
+  } catch (err) {
+    setError(err.message);
   }
+}
 
   async function handleDeactivate(id) {
     if (!confirm('Désactiver cet étudiant ? Il ne pourra plus se connecter.')) return;
@@ -148,6 +152,14 @@ export default function StudentsPage() {
             placeholder="Email"
             value={newEmail}
             onChange={(e) => setNewEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Mot de passe initial (min. 8 caractères)"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            minLength={8}
             required
           />
           <button type="submit" disabled={creating}>
