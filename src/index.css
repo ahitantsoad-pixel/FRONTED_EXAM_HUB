@@ -1,483 +1,2427 @@
-/* src/styles/main.css */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
+/* ==========================================
+   1. RESET & VARIABLES GLOBALES
+   ========================================== */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 }
 
 body {
-  margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
-  background: #f5f5f7;
-  color: #1a1a1a;
-}
-
-h1 {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-}
-
-h2 {
-  font-size: 1.2rem;
-  margin: 1.5rem 0 0.75rem;
-}
-
-/* ---------- Layout général ---------- */
-
-.app-layout {
+  background-color: #0b0e17;
+  color: #cbd5e1;
+  padding: 2rem;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 1.5rem;
-  background: #1a1a2e;
-  color: white;
+/* ==========================================
+   2. NAVBAR & MENU DE NAVIGATION
+   ========================================== */
+.navbar,
+header.navbar {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  background-color: #131927 !important;
+  padding: 1rem 1.5rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  margin-bottom: 1.5rem !important;
+  width: 100% !important;
 }
 
 .navbar-title {
-  font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.25rem !important;
+  font-weight: 800 !important;
+  color: #f8fafc !important;
+  letter-spacing: -0.01em !important;
 }
 
 .navbar-user {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  display: flex !important;
+  align-items: center !important;
+  gap: 1.25rem !important;
+  color: #cbd5e1 !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
 }
 
 .navbar-user button {
-  background: #e94560;
-  color: white;
-  border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-  cursor: pointer;
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #fca5a5 !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+  padding: 0.45rem 0.9rem !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
 }
 
-.app-body {
-  display: flex;
-  flex: 1;
+.navbar-user button:hover {
+  background: #ef4444 !important;
+  color: #ffffff !important;
+  border-color: #ef4444 !important;
 }
 
-.sidebar {
-  width: 200px;
-  background: white;
-  border-right: 1px solid #ddd;
-  padding: 1rem 0;
-}
-
+/* Menu d'onglets (Tableau de bord, Étudiants, etc.) */
+body > div ul,
+nav ul,
 .sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0 0 2rem 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 0.75rem !important;
+  align-items: center !important;
 }
 
+body > div li,
+nav li,
+.sidebar li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+body > div ul a,
+nav a,
 .sidebar a {
-  display: block;
-  padding: 0.6rem 1.5rem;
-  color: #333;
-  text-decoration: none;
+  display: inline-block !important;
+  padding: 0.6rem 1.2rem !important;
+  color: #8e9ab0 !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  border-radius: 10px !important;
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  transition: all 0.2s ease !important;
 }
 
-.sidebar a.active {
-  background: #eef2ff;
-  color: #4338ca;
-  font-weight: bold;
-  border-left: 3px solid #4338ca;
-}
-
+body > div ul a:hover,
+nav a:hover,
 .sidebar a:hover {
-  background: #f5f5f7;
+  color: #ffffff !important;
+  background: rgba(79, 70, 229, 0.2) !important;
+  border-color: #4f46e5 !important;
 }
 
-.app-content {
-  flex: 1;
-  padding: 2rem;
-  max-width: 1100px;
-}
-
-/* ---------- Login ---------- */
-
-.login-page {
-  max-width: 360px;
-  margin: 10vh auto;
-  padding: 2rem;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-}
-
-.login-page form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.login-page label {
-  font-size: 0.9rem;
-  color: #555;
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-/* ---------- Formulaires génériques ---------- */
-
-input,
-select,
-textarea {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 0.95rem;
-}
-
-button {
-  background: #4338ca;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  margin-right: 0.5rem;
-}
-
-button:hover {
-  background: #362ea3;
-}
-
-button:disabled {
-  background: #aaa;
-  cursor: not-allowed;
-}
-
-.create-student-form,
-.create-course-form,
-.create-exam-form,
-.create-question-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  max-width: 500px;
-  padding: 1rem;
-  background: white;
-  border-radius: 8px;
-  margin: 1rem 0;
-  border: 1px solid #eee;
-}
-
-/* ---------- Tableaux ---------- */
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  margin-top: 1rem;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-th,
-td {
-  text-align: left;
-  padding: 0.6rem 0.8rem;
-  border-bottom: 1px solid #eee;
-}
-
-th {
-  background: #f0f0f3;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  color: #666;
-}
-
-/* ---------- Messages ---------- */
-
-.error-message {
-  background: #fee2e2;
-  color: #991b1b;
-  padding: 0.6rem 1rem;
-  border-radius: 6px;
-  margin: 0.75rem 0;
-}
-
-.info-banner {
-  background: #dbeafe;
-  color: #1e40af;
-  padding: 0.6rem 1rem;
-  border-radius: 6px;
-  margin: 0.75rem 0;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.warning-banner {
-  background: #fef3c7;
-  color: #92400e;
-  padding: 0.6rem 1rem;
-  border-radius: 6px;
-  margin: 0.75rem 0;
-}
-
-/* ---------- Dashboard ---------- */
-
-.dashboard-counters {
-  display: flex;
-  gap: 1rem;
-  margin: 1.5rem 0;
-}
-
-.counter-card {
-  background: white;
-  padding: 1.25rem;
-  border-radius: 8px;
-  min-width: 150px;
-  text-align: center;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-}
-
-.counter-value {
-  display: block;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #4338ca;
-}
-
-.counter-label {
-  font-size: 0.85rem;
-  color: #666;
-}
-
-.dashboard-quick-links ul {
-  list-style: none;
-  padding: 0;
-}
-
-.dashboard-quick-links li {
-  margin-bottom: 0.5rem;
-}
-
-/* ---------- Résultats ---------- */
-
-.results-summary {
-  display: flex;
-  gap: 1rem;
-  margin: 1.5rem 0;
-}
-
-.summary-card {
-  background: white;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-}
-
-.summary-label {
-  display: block;
-  font-size: 0.8rem;
-  color: #666;
-}
-
-.summary-value {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #333;
-}
-
-/* ---------- Questions / choix ---------- */
-
-.choice-row {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.4rem;
-}
-
-.questions-list {
-  list-style: none;
-  padding: 0;
-}
-
-.questions-list > li {
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 0.75rem;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-}
-/* ---------- Accès rapides ---------- */
-
-.dashboard-quick-links ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.dashboard-quick-links li {
-  margin-bottom: 0;
-}
-
-.dashboard-quick-links a {
-  display: block;
-  background: white;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-  text-decoration: none;
-  color: #4338ca;
-  font-weight: 600;
-  min-width: 180px;
-  transition: transform 0.15s, box-shadow 0.15s;
-}
-
-.dashboard-quick-links a:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-/* ---------- Actions dans les tableaux ---------- */
-
-td a,
-td button {
-  margin-right: 0.5rem;
-  margin-bottom: 0.3rem;
-  display: inline-block;
-}
-
-td a {
-  background: white;
-  color: #4338ca;
-  border: 1px solid #4338ca;
-  padding: 0.35rem 0.7rem;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.15s;
-}
-
-td a:hover {
-  background: #eef2ff;
-}
-@media (max-width: 768px) {
-
-  .app-body {
-    flex-direction: column;
-  }
-  .sidebar {
-    width: 100%;
-  }
-}
-
-.exams-list {
-  list-style: none;
-  padding: 0;
-}
-
-.exam-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+/* ==========================================
+   3. EN-TÊTE DU DASHBOARD
+   ========================================== */
+.dashboard-banner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  margin-bottom: 2rem;
 }
 
-.exam-window {
+h1 {
+  color: #f8fafc;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.welcome {
+  color: #8e9ab0;
+  font-size: 1rem;
+  margin-top: 0.25rem;
+}
+
+.system-status {
+  background: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 0.4rem 0.85rem;
+  border-radius: 20px;
   font-size: 0.85rem;
-  color: #666;
-}
-
-.question-block {
-  background: white;
-  border: none;
-  border-radius: 8px;
-  padding: 1rem 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.question-block legend {
-  font-weight: bold;
-  color: #4338ca;
-}
-
-.choice-option {
-  display: block;
-  padding: 0.4rem 0;
-}
-
-.progress-note {
-  color: #666;
-  font-size: 0.9rem;
-}
-
-.confirm-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
+  font-weight: 600;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.5rem;
 }
 
-.confirm-box {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  max-width: 400px;
+/* ==========================================
+   4. CARTES DE STATISTIQUES (UNIFORMISÉES)
+   ========================================== */
+.dashboard-counters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
+.counter-card {
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  padding: 1.5rem !important;
+  min-height: 140px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  transition: transform 0.2s ease, border-color 0.2s ease !important;
+}
+
+.counter-card:hover {
+  transform: translateY(-3px) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.counter-card .card-top {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  min-height: 24px !important;
+}
+
+.card-tag {
+  color: #8e9ab0 !important;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.badge-active {
+  background: rgba(56, 189, 248, 0.15) !important;
+  color: #38bdf8 !important;
+  font-size: 0.75rem !important;
+  padding: 0.2rem 0.6rem !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+}
+
+.counter-value {
+  font-size: 2.5rem !important;
+  font-weight: 800 !important;
+  color: #f8fafc !important;
+  line-height: 1 !important;
+  margin: 0.4rem 0 !important;
+}
+
+.counter-label {
+  color: #8e9ab0 !important;
+  font-size: 0.88rem !important;
+  font-weight: 500 !important;
+  display: block !important;
+}
+
+.progress-bar-bg {
+  display: none !important;
+}
+
+/* ==========================================
+   5. GRILLE SECONDAIRE & ACCÈS RAPIDES (FLEX HORIZONTAL)
+   ========================================== */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+/* Passer la section Accès Rapides sur toute la largeur si vous le souhaitez, ou garder en colonne */
+.dashboard-quick-links {
+  grid-column: 1 / -1; /* Occupe toute la largeur pour bien étaler les 3 cartes */
+}
+
+h2 {
+  color: #f8fafc;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+/* Alignement Flexbox horizontal des 3 boutons */
+.dashboard-quick-links ul {
+  list-style: none !important;
+  display: flex !important;
+  flex-direction: row !important; /* Cartes côte à côte */
+  gap: 1.25rem !important;
+  width: 100% !important;
+}
+
+.dashboard-quick-links li {
+  flex: 1 !important; /* Distribue une largeur égale aux 3 cartes */
+}
+
+.dashboard-quick-links a {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  gap: 0.4rem !important;
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 1.25rem !important;
+  border-radius: 12px !important;
+  text-decoration: none !important;
+  height: 100% !important;
+  transition: all 0.2s ease !important;
+}
+
+.dashboard-quick-links a span {
+  display: block !important;
+  color: #f8fafc !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+}
+
+.dashboard-quick-links a small {
+  display: block !important;
+  color: #8e9ab0 !important;
+  font-size: 0.85rem !important;
+  line-height: 1.3 !important;
+}
+
+.dashboard-quick-links a:hover {
+  border-color: #4f46e5 !important;
+  background: #182033 !important;
+  transform: translateY(-3px) !important;
+  
+}
+/* ==========================================
+   CORRECTION DU VIDE : VUE D'ENSEMBLE (PLEINE LARGEUR)
+   ========================================== */
+.dashboard-activity {
+  grid-column: 1 / -1 !important; /* Force le composant à prendre toute la largeur */
+  width: 100% !important;
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  padding: 1.5rem !important;
+  margin-top: 1rem !important;
+}
+
+.dashboard-activity h2 {
+  margin-top: 0 !important;
+  margin-bottom: 1.25rem !important;
+  color: #f8fafc !important;
+}
+
+/* Transforme les blocs internes en grille côte à côte pour combler tout l'espace */
+.dashboard-activity .activity-card,
+.dashboard-activity > div {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 1.25rem !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.dashboard-activity p,
+.dashboard-activity .activity-item {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.04) !important;
+  border-radius: 12px !important;
+  padding: 1.25rem !important;
+  margin-bottom: 0 !important;
+  height: 100% !important;
+}
+
+.dashboard-activity strong,
+.dashboard-activity b {
+  display: block !important;
+  color: #f8fafc !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  margin-top: 0.3rem !important;
+  margin-bottom: 0.2rem !important;
+}
+
+.dashboard-activity span,
+.dashboard-activity small {
+  color: #8e9ab0 !important;
+  font-size: 0.88rem !important;
+  display: block !important;
+}
+/* ==========================================
+   6. RESPONSIVE
+   ========================================== */
+@media (max-width: 900px) {
+  .dashboard-counters,
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+/* ==========================================
+   STYLE PAGE COURS (CoursesPage.jsx)
+   ========================================== */
+
+.courses-page {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+}
+
+/* Titre principal */
+.courses-page h1 {
+  color: #f8fafc !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Message d'erreur */
+.error-message {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #fca5a5 !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+  padding: 0.8rem 1.2rem !important;
+  border-radius: 10px !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+}
+
+/* Bouton d'ouverture "+ Nouveau cours" */
+.courses-page > button {
+  align-self: flex-start !important;
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0.65rem 1.25rem !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.courses-page > button:hover {
+  background: #4338ca !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Formulaire de création */
+.create-course-form {
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 1.5rem !important;
+  border-radius: 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+  max-width: 500px !important;
+}
+
+.create-course-form input,
+.create-course-form textarea {
+  background: #0b0e17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #f8fafc !important;
+  padding: 0.75rem 1rem !important;
+  border-radius: 8px !important;
+  font-size: 0.9rem !important;
+  outline: none !important;
+  transition: border-color 0.2s ease !important;
+}
+
+.create-course-form textarea {
+  min-height: 80px !important;
+  resize: vertical !important;
+}
+
+.create-course-form input:focus,
+.create-course-form textarea:focus {
+  border-color: #4f46e5 !important;
+}
+
+.create-course-form button[type="submit"] {
+  background: #10b981 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0.65rem 1rem !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+}
+
+.create-course-form button[type="button"] {
+  background: transparent !important;
+  color: #8e9ab0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 0.65rem 1rem !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+}
+
+/* Tableau de gestion des cours */
+.courses-page table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+}
+
+.courses-page th {
+  background: rgba(255, 255, 255, 0.03) !important;
+  color: #8e9ab0 !important;
+  font-weight: 700 !important;
+  text-align: left !important;
+  padding: 1rem 1.25rem !important;
+  font-size: 0.85rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.courses-page td {
+  padding: 1rem 1.25rem !important;
+  color: #cbd5e1 !important;
+  font-size: 0.95rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+  vertical-align: middle !important;
+}
+
+.courses-page tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* Champs d'édition en ligne dans le tableau */
+.courses-page td input {
+  background: #0b0e17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #f8fafc !important;
+  padding: 0.4rem 0.75rem !important;
+  border-radius: 6px !important;
+  font-size: 0.9rem !important;
+  width: 100% !important;
+}
+
+/* Boutons d'action dans la table (Modifier/Supprimer/Enregistrer/Annuler) */
+.courses-page td button {
+  padding: 0.4rem 0.8rem !important;
+  border-radius: 6px !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  margin-right: 0.5rem !important;
+  border: none !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Bouton Modifier / Enregistrer */
+.courses-page td button:nth-child(1) {
+  background: rgba(79, 70, 229, 0.15) !important;
+  color: #a5b4fc !important;
+  border: 1px solid rgba(79, 70, 229, 0.3) !important;
+}
+
+.courses-page td button:nth-child(1):hover {
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+}
+
+/* Bouton Supprimer / Annuler */
+.courses-page td button:nth-child(2) {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #fca5a5 !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+}
+
+.courses-page td button:nth-child(2):hover {
+  background: #ef4444 !important;
+  color: #ffffff !important;
+}
+/* ==========================================
+   STYLE PAGE ÉTUDIANTS (StudentsPage.jsx)
+   ========================================== */
+
+.students-page {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+}
+
+/* Titre principal */
+.students-page h1 {
+  color: #f8fafc !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Bannières d'information (Mot de passe créé / réinitialisé) */
+.info-banner {
+  background: rgba(56, 189, 248, 0.12) !important;
+  border: 1px solid rgba(56, 189, 248, 0.3) !important;
+  color: #7dd3fc !important;
+  padding: 0.9rem 1.25rem !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  font-size: 0.9rem !important;
+}
+
+.info-banner strong {
+  color: #ffffff !important;
+  font-family: monospace !important;
+  background: rgba(0, 0, 0, 0.3) !important;
+  padding: 0.2rem 0.5rem !important;
+  border-radius: 6px !important;
+  font-size: 0.95rem !important;
+}
+
+.info-banner button {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0.35rem 0.75rem !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  font-weight: 600 !important;
+  font-size: 0.8rem !important;
+}
+
+.info-banner button:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Bouton principal "+ Nouvel étudiant" */
+.students-page > button {
+  align-self: flex-start !important;
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0.65rem 1.25rem !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.students-page > button:hover {
+  background: #4338ca !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Formulaire de création d'étudiant */
+.create-student-form {
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 1.5rem !important;
+  border-radius: 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+  max-width: 500px !important;
+}
+
+.create-student-form input {
+  background: #0b0e17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #f8fafc !important;
+  padding: 0.75rem 1rem !important;
+  border-radius: 8px !important;
+  font-size: 0.9rem !important;
+  outline: none !important;
+  transition: border-color 0.2s ease !important;
+}
+
+.create-student-form input:focus {
+  border-color: #4f46e5 !important;
+}
+
+.create-student-form button[type="submit"] {
+  background: #10b981 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0.65rem 1rem !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+}
+
+.create-student-form button[type="button"] {
+  background: transparent !important;
+  color: #8e9ab0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 0.65rem 1rem !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+}
+
+/* Tableau de gestion des étudiants */
+.students-page table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+}
+
+.students-page th {
+  background: rgba(255, 255, 255, 0.03) !important;
+  color: #8e9ab0 !important;
+  font-weight: 700 !important;
+  text-align: left !important;
+  padding: 1rem 1.25rem !important;
+  font-size: 0.85rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.students-page td {
+  padding: 1rem 1.25rem !important;
+  color: #cbd5e1 !important;
+  font-size: 0.95rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+  vertical-align: middle !important;
+}
+
+.students-page tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* Champs d'édition en ligne */
+.students-page td input {
+  background: #0b0e17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #f8fafc !important;
+  padding: 0.4rem 0.75rem !important;
+  border-radius: 6px !important;
+  font-size: 0.9rem !important;
+  width: 100% !important;
+}
+
+/* Boutons d'action dans la table (Modifier / Reset Mdp / Désactiver) */
+.students-page td button {
+  padding: 0.4rem 0.8rem !important;
+  border-radius: 6px !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  margin-right: 0.4rem !important;
+  border: none !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Bouton Modifier / Enregistrer */
+.students-page td button:nth-of-type(1) {
+  background: rgba(79, 70, 229, 0.15) !important;
+  color: #a5b4fc !important;
+  border: 1px solid rgba(79, 70, 229, 0.3) !important;
+}
+
+.students-page td button:nth-of-type(1):hover {
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+}
+
+/* Bouton Réinitialiser mdp */
+.students-page td button:nth-of-type(2) {
+  background: rgba(245, 158, 11, 0.15) !important;
+  color: #fcd34d !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+}
+
+.students-page td button:nth-of-type(2):hover {
+  background: #f59e0b !important;
+  color: #ffffff !important;
+}
+
+/* Bouton Désactiver */
+.students-page td button:nth-of-type(3) {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #fca5a5 !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+}
+
+.students-page td button:nth-of-type(3):hover {
+  background: #ef4444 !important;
+  color: #ffffff !important;
+}
+/* ==========================================
+   STYLE PAGE RÉSULTAT EXAMEN (ExamResultPage.jsx)
+   ========================================== */
+
+.exam-result-page {
+  width: 100% !important;
+  max-width: 800px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+}
+
+/* Liens de retour ("< Voir mes résultats") */
+.exam-result-page a {
+  color: #8e9ab0 !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  transition: color 0.2s ease !important;
+}
+
+.exam-result-page a:hover {
+  color: #ffffff !important;
+}
+
+/* Titre de la page */
+.exam-result-page h1 {
+  color: #f8fafc !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+}
+
+.exam-result-page h2 {
+  color: #f8fafc !important;
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
+  margin-top: 1rem !important;
+}
+
+/* Carte affichant le Score Global */
 .result-score {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  text-align: center;
-  margin: 1.5rem 0;
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  padding: 2rem !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
 }
 
 .score-value {
-  display: block;
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #4338ca;
+  font-size: 3rem !important;
+  font-weight: 800 !important;
+  color: #38bdf8 !important;
+  line-height: 1 !important;
 }
 
+.score-label {
+  color: #8e9ab0 !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Liste de correction */
 .correction-list {
-  list-style: none;
-  padding: 0;
+  list-style: none !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.25rem !important;
 }
 
-.correction-correct,
-.correction-incorrect {
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 0.75rem;
-  border-left: 4px solid;
+/* Cartes de question (Correct / Incorrect) */
+.correction-list > li {
+  background: #131927 !important;
+  border-radius: 14px !important;
+  padding: 1.25rem 1.5rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
-.correction-correct {
-  border-color: #16a34a;
+/* Bordure latérale verte si correct */
+.correction-list > li.correction-correct {
+  border-left: 4px solid #10b981 !important;
 }
 
-.correction-incorrect {
-  border-color: #dc2626;
+/* Bordure latérale rouge si incorrect */
+.correction-list > li.correction-incorrect {
+  border-left: 4px solid #ef4444 !important;
 }
 
-.choice-correct {
-  color: #16a34a;
-  font-weight: bold;
+.correction-question {
+  color: #f8fafc !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
 }
 
-.choice-wrong {
-  color: #dc2626;
+/* Sous-liste des choix de réponses */
+.correction-list ul {
+  list-style: none !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
+}
+
+.correction-list ul li {
+  padding: 0.75rem 1rem !important;
+  border-radius: 8px !important;
+  background: #0b0e17 !important;
+  color: #cbd5e1 !important;
+  font-size: 0.9rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+/* Choix correct (surligné en vert) */
+.correction-list ul li.choice-correct {
+  background: rgba(16, 185, 129, 0.12) !important;
+  color: #34d399 !important;
+  border: 1px solid rgba(16, 185, 129, 0.3) !important;
+  font-weight: 600 !important;
+}
+
+/* Mauvais choix sélectionné par l'étudiant (surligné en rouge) */
+.correction-list ul li.choice-wrong {
+  background: rgba(239, 68, 68, 0.12) !important;
+  color: #fca5a5 !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+  font-weight: 600 !important;
+}
+
+/* Affichage des points accordés à la question */
+.correction-points {
+  align-self: flex-end !important;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  color: #8e9ab0 !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  padding: 0.25rem 0.6rem !important;
+  border-radius: 6px !important;
+}
+
+.correction-correct .correction-points {
+  color: #34d399 !important;
+  background: rgba(16, 185, 129, 0.1) !important;
+};
+/* ==========================================
+   STYLE PAGE EXAMENS (ExamsPage.jsx)
+   ========================================== */
+
+.exams-page {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+}
+
+/* Titre principal */
+.exams-page h1 {
+  color: #f8fafc !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Bouton principal "+ Nouvel examen" */
+.exams-page > button {
+  align-self: flex-start !important;
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0.65rem 1.25rem !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.exams-page > button:hover:not(:disabled) {
+  background: #4338ca !important;
+  transform: translateY(-2px) !important;
+}
+
+.exams-page > button:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
+/* Formulaire de création d'examen */
+.create-exam-form {
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 1.5rem !important;
+  border-radius: 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+  max-width: 550px !important;
+}
+
+.create-exam-form select,
+.create-exam-form input,
+.create-exam-form textarea {
+  background: #0b0e17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #f8fafc !important;
+  padding: 0.75rem 1rem !important;
+  border-radius: 8px !important;
+  font-size: 0.9rem !important;
+  outline: none !important;
+  transition: border-color 0.2s ease !important;
+}
+
+.create-exam-form select:focus,
+.create-exam-form input:focus,
+.create-exam-form textarea:focus {
+  border-color: #4f46e5 !important;
+}
+
+.create-exam-form textarea {
+  min-height: 80px !important;
+  resize: vertical !important;
+}
+
+/* Alignement des étiquettes de date/heure */
+.create-exam-form label {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.4rem !important;
+  color: #8e9ab0 !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+}
+
+.create-exam-form label input[type="datetime-local"] {
+  width: 100% !important;
+  color-scheme: dark !important;
+}
+
+.create-exam-form button[type="submit"] {
+  background: #10b981 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0.65rem 1rem !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  margin-top: 0.5rem !important;
+}
+
+.create-exam-form button[type="button"] {
+  background: transparent !important;
+  color: #8e9ab0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 0.65rem 1rem !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+}
+
+/* Tableau de gestion des examens */
+.exams-page table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+}
+
+.exams-page th {
+  background: rgba(255, 255, 255, 0.03) !important;
+  color: #8e9ab0 !important;
+  font-weight: 700 !important;
+  text-align: left !important;
+  padding: 1rem 1.25rem !important;
+  font-size: 0.85rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.exams-page td {
+  padding: 1rem 1.25rem !important;
+  color: #cbd5e1 !important;
+  font-size: 0.95rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+  vertical-align: middle !important;
+}
+
+.exams-page tr:last-child td {
+  border-bottom: none !important;
+}
+
+.exams-page td strong {
+  color: #f8fafc !important;
+  font-size: 1rem !important;
+  display: block !important;
+}
+
+.exams-page td p {
+  color: #8e9ab0 !important;
+  font-size: 0.85rem !important;
+  margin-top: 0.25rem !important;
+}
+
+/* Champs d'édition en ligne dans le tableau */
+.exams-page td input,
+.exams-page td textarea {
+  background: #0b0e17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #f8fafc !important;
+  padding: 0.4rem 0.75rem !important;
+  border-radius: 6px !important;
+  font-size: 0.88rem !important;
+  width: 100% !important;
+  margin-bottom: 0.4rem !important;
+}
+
+.exams-page td input[type="datetime-local"] {
+  color-scheme: dark !important;
+}
+
+/* Liens et boutons d'action dans le tableau */
+.exams-page td a,
+.exams-page td button {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0.4rem 0.75rem !important;
+  border-radius: 6px !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  margin-right: 0.4rem !important;
+  margin-bottom: 0.25rem !important;
+  border: none !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Lien "Questions" */
+.exams-page td a[href*="/questions"] {
+  background: rgba(56, 189, 248, 0.15) !important;
+  color: #38bdf8 !important;
+  border: 1px solid rgba(56, 189, 248, 0.3) !important;
+}
+
+.exams-page td a[href*="/questions"]:hover {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+}
+
+/* Lien "Résultats" */
+.exams-page td a[href*="/results"] {
+  background: rgba(168, 85, 247, 0.15) !important;
+  color: #c084fc !important;
+  border: 1px solid rgba(168, 85, 247, 0.3) !important;
+}
+
+.exams-page td a[href*="/results"]:hover {
+  background: #9333ea !important;
+  color: #ffffff !important;
+}
+
+/* Bouton "Modifier" / "Enregistrer" */
+.exams-page td button:nth-of-type(1) {
+  background: rgba(79, 70, 229, 0.15) !important;
+  color: #a5b4fc !important;
+  border: 1px solid rgba(79, 70, 229, 0.3) !important;
+}
+
+.exams-page td button:nth-of-type(1):hover {
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+}
+
+/* Bouton "Supprimer" / "Annuler" */
+.exams-page td button:nth-of-type(2) {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #fca5a5 !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+}
+
+.exams-page td button:nth-of-type(2):hover {
+  background: #ef4444 !important;
+  color: #ffffff !important;
+}
+/* ==========================================
+   STYLE PAGE QUESTIONS D'EXAMEN (exam-questions-page)
+   ========================================== */
+
+.exam-questions-page {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+  text-align: left !important;
+}
+
+/* Lien retour "← Retour aux examens" */
+.exam-questions-page > a {
+  color: #8e9ab0 !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  align-self: flex-start !important;
+}
+
+.exam-questions-page > a:hover {
+  color: #ffffff !important;
+}
+
+/* Titre */
+.exam-questions-page h1 {
+  color: #f8fafc !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  margin: 0 !important;
+}
+
+/* Bouton "+ Nouvelle question" */
+.exam-questions-page > button {
+  align-self: flex-start !important;
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0.65rem 1.25rem !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.exam-questions-page > button:hover:not(:disabled) {
+  background: #4338ca !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Conteneur principal de la liste des questions */
+.exam-questions-page .questions-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.25rem !important;
+}
+
+/* Carte de question individuelle */
+.exam-questions-page .questions-list > li {
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  padding: 1.5rem !important;
+  text-align: left !important;
+}
+
+.exam-questions-page .questions-list > li > div {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 1rem !important;
+}
+
+/* Énoncé de la question */
+.exam-questions-page .questions-list strong {
+  color: #f8fafc !important;
+  font-size: 1.05rem !important;
+}
+
+/* Liste des choix de réponse */
+.exam-questions-page .questions-list ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.6rem !important;
+  width: 100% !important;
+}
+
+/* Élément de choix */
+.exam-questions-page .questions-list ul li {
+  background: #0b0e17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 8px !important;
+  padding: 0.8rem 1.2rem !important;
+  color: #cbd5e1 !important;
+  font-size: 0.95rem !important;
+  text-align: left !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+/* Style de la bonne réponse (détectée par le gras appliqué par React) */
+.exam-questions-page .questions-list ul li[style*="bold"],
+.exam-questions-page .questions-list ul li[style*="700"] {
+  background: rgba(16, 185, 129, 0.08) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+  color: #34d399 !important;
+}
+
+/* Boutons Modifier / Supprimer */
+.exam-questions-page .questions-list button {
+  padding: 0.45rem 0.9rem !important;
+  border-radius: 8px !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  border: none !important;
+  margin-right: 0.5rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.exam-questions-page .questions-list button:nth-of-type(1) {
+  background: rgba(79, 70, 229, 0.15) !important;
+  color: #a5b4fc !important;
+  border: 1px solid rgba(79, 70, 229, 0.3) !important;
+}
+
+.exam-questions-page .questions-list button:nth-of-type(1):hover:not(:disabled) {
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+}
+
+.exam-questions-page .questions-list button:nth-of-type(2) {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #fca5a5 !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+}
+
+.exam-questions-page .questions-list button:nth-of-type(2):hover:not(:disabled) {
+  background: #ef4444 !important;
+  color: #ffffff !important;
+}
+
+/* Formulaires de création et édition */
+.exam-questions-page .create-question-form,
+.exam-questions-page .edit-question-form {
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 1.5rem !important;
+  border-radius: 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+}
+
+.exam-questions-page textarea,
+.exam-questions-page input[type="text"],
+.exam-questions-page input[type="number"] {
+  background: #0b0e17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #f8fafc !important;
+  padding: 0.75rem 1rem !important;
+  border-radius: 8px !important;
+  font-size: 0.9rem !important;
+  outline: none !important;
+}
+
+.exam-questions-page .choice-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+}
+
+.exam-questions-page .choice-row input[type="text"] {
+  flex: 1 !important;
+}
+/* ==========================================
+   STYLE PAGE RÉSULTATS ADMIN (admin-exam-results)
+   ========================================== */
+
+/* Conteneur principal */
+.admin-exam-results-page,
+.exam-results-admin-page,
+.admin-results-page {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.75rem !important;
+  text-align: left !important;
+}
+
+/* Lien Retour */
+.admin-exam-results-page a,
+.exam-results-admin-page a,
+.admin-results-page a {
+  color: #818cf8 !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+}
+
+.admin-exam-results-page a:hover,
+.exam-results-admin-page a:hover,
+.admin-results-page a:hover {
+  text-decoration: underline !important;
+  color: #a5b4fc !important;
+}
+
+/* Titre principal */
+.admin-exam-results-page h1,
+.exam-results-admin-page h1,
+.admin-results-page h1 {
+  color: #f8fafc !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  margin: 0 !important;
+}
+
+/* ------------------------------------------
+   Grille de cartes d'indicateurs (KPIs / Stats)
+   ------------------------------------------ */
+.admin-exam-results-page .stats-grid,
+.admin-exam-results-page .exam-stats,
+.exam-results-admin-page .stats-grid,
+.admin-results-page .stats-summary {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+  gap: 1rem !important;
+  margin: 0 !important;
+}
+
+/* Cartes pour chaque statistique */
+.admin-exam-results-page .stat-card,
+.admin-exam-results-page .stats-grid > div,
+.exam-results-admin-page .stat-card,
+.admin-results-page .stat-box {
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 1.25rem 1.5rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.35rem !important;
+}
+
+.admin-exam-results-page .stat-card .stat-label,
+.admin-exam-results-page .stats-grid > div p:first-child,
+.admin-results-page .stat-box label {
+  color: #8e9ab0 !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.admin-exam-results-page .stat-card .stat-value,
+.admin-exam-results-page .stats-grid > div p:last-child,
+.admin-results-page .stat-box span {
+  color: #f8fafc !important;
+  font-size: 1.6rem !important;
+  font-weight: 800 !important;
+}
+
+/* Highlight couleur pour la moyenne */
+.admin-exam-results-page .stat-card.stat-avg .stat-value,
+.admin-exam-results-page .stats-grid > div:nth-child(2) {
+  color: #10b981 !important;
+}
+/* ==========================================
+   STYLE PAGE RÉSULTATS ADMIN (exam-results-page)
+   ========================================== */
+
+.exam-results-page {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.75rem !important;
+  text-align: left !important;
+}
+
+/* Lien "Retour" */
+.exam-results-page a {
+  color: #818cf8 !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  display: inline-block !important;
+  width: fit-content !important;
+}
+
+.exam-results-page a:hover {
+  text-decoration: underline !important;
+  color: #a5b4fc !important;
+}
+
+/* Titre principal */
+.exam-results-page h1 {
+  color: #f8fafc !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  margin: 0 !important;
+}
+
+/* Alignement côte à côte des cartes de résumé (.results-summary) */
+.exam-results-page .results-summary {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 1.25rem !important;
+  width: 100% !important;
+}
+
+/* Cartes de statistiques (.summary-card) */
+.exam-results-page .summary-card {
+  flex: 1 1 200px !important;
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 1.25rem 1.5rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.4rem !important;
+  box-sizing: border-box !important;
+}
+
+.exam-results-page .summary-label {
+  color: #8e9ab0 !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.exam-results-page .summary-value {
+  color: #f8fafc !important;
+  font-size: 1.75rem !important;
+  font-weight: 800 !important;
+}
+
+/* Deuxième carte (Moyenne) en vert */
+.exam-results-page .summary-card:nth-child(2) .summary-value {
+  color: #10b981 !important;
+}
+
+/* Tableau des résultats */
+.exam-results-page table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  margin-top: 0.5rem !important;
+}
+
+/* En-tête du tableau */
+.exam-results-page th {
+  background: #1a2234 !important;
+  color: #8e9ab0 !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 1rem 1.25rem !important;
+  text-align: left !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Cellules du tableau */
+.exam-results-page td {
+  padding: 1rem 1.25rem !important;
+  color: #cbd5e1 !important;
+  font-size: 0.95rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+  vertical-align: middle !important;
+}
+
+.exam-results-page tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+.exam-results-page tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+/* Colonne Note en vert */
+.exam-results-page td:nth-child(2) {
+  font-weight: 700 !important;
+  color: #10b981 !important;
+}
+/* ------------------------------------------
+   Tableau des étudiants
+   ------------------------------------------ */
+.admin-exam-results-page table,
+.exam-results-admin-page table,
+.admin-results-page table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  margin-top: 0.5rem !important;
+}
+
+/* En-tête du tableau */
+.admin-exam-results-page th,
+.exam-results-admin-page th,
+.admin-results-page th {
+  background: #1a2234 !important;
+  color: #8e9ab0 !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 1rem 1.25rem !important;
+  text-align: left !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Lignes du tableau */
+.admin-exam-results-page td,
+.exam-results-admin-page td,
+.admin-results-page td {
+  padding: 1rem 1.25rem !important;
+  color: #cbd5e1 !important;
+  font-size: 0.95rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+  vertical-align: middle !important;
+}
+
+.admin-exam-results-page tbody tr:last-child td,
+.exam-results-admin-page tbody tr:last-child td,
+.admin-results-page tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+.admin-exam-results-page tbody tr:hover,
+.exam-results-admin-page tbody tr:hover,
+.admin-results-page tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+/* Style de la colonne Note */
+.admin-exam-results-page td:nth-child(2),
+.exam-results-admin-page td:nth-child(2),
+.admin-results-page td:nth-child(2) {
+  font-weight: 700 !important;
+  color: #10b981 !important;
+}
+/* ==========================================
+   STYLE PAGE DE CONNEXION (login-page)
+   ========================================== */
+
+/* Centrage global sur l'écran */
+.login-page {
+  min-height: 80vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+/* Titre principal */
+.login-page h1 {
+  color: #f8fafc !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 2rem !important;
+}
+
+/* Container de formulaire style Card */
+.login-page form {
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 2.5rem !important;
+  border-radius: 16px !important;
+  width: 100% !important;
+  max-width: 400px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.25rem !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Groupes de champs (labels + inputs) */
+.login-page form > div {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0.5rem !important;
+}
+
+/* Style des labels */
+.login-page label {
+  color: #cbd5e1 !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+}
+
+/* Inputs Email & Mot de passe */
+.login-page input[type="email"],
+.login-page input[type="password"] {
+  width: 100% !important;
+  background: #0b0e17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #f8fafc !important;
+  padding: 0.8rem 1rem !important;
+  border-radius: 8px !important;
+  font-size: 0.95rem !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  transition: border-color 0.2s ease !important;
+}
+
+.login-page input[type="email"]:focus,
+.login-page input[type="password"]:focus {
+  border-color: #4f46e5 !important;
+}
+
+/* Message d'erreur */
+.login-page .error-message {
+  color: #fca5a5 !important;
+  background: rgba(239, 68, 68, 0.1) !important;
+  border: 1px solid rgba(239, 68, 68, 0.2) !important;
+  padding: 0.75rem !important;
+  border-radius: 8px !important;
+  font-size: 0.85rem !important;
+  margin: 0 !important;
+}
+
+/* Bouton Se connecter */
+.login-page button[type="submit"] {
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0.8rem !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+  margin-top: 0.5rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.login-page button[type="submit"]:hover:not(:disabled) {
+  background: #4338ca !important;
+  transform: translateY(-1px) !important;
+}
+
+.login-page button[type="submit"]:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+/* ==========================================
+   STYLE PAGE EXAMENS DISPONIBLES (available-exams-page)
+   ========================================== */
+
+.available-exams-page {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+  text-align: left !important;
+}
+
+/* Titre principal */
+.available-exams-page h1 {
+  color: #f8fafc !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  margin: 0 !important;
+}
+
+/* Grille de cartes d'examens */
+.available-exams-page .exams-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+  gap: 1.25rem !important;
+}
+
+/* Carte d'examen */
+.available-exams-page .exam-card {
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  padding: 1.5rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  gap: 1.25rem !important;
+  box-sizing: border-box !important;
+  transition: transform 0.2s ease, border-color 0.2s ease !important;
+}
+
+.available-exams-page .exam-card:hover {
+  border-color: rgba(79, 70, 229, 0.4) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Titre de l'examen */
+.available-exams-page .exam-card h2 {
+  color: #f8fafc !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  margin: 0 0 0.5rem 0 !important;
+}
+
+/* Description de l'examen */
+.available-exams-page .exam-card p {
+  color: #8e9ab0 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+
+/* Fenêtre de disponibilité */
+.available-exams-page .exam-window {
+  margin-top: 0.75rem !important;
+  font-size: 0.85rem !important;
+  color: #a5b4fc !important;
+  font-weight: 600 !important;
+  background: rgba(79, 70, 229, 0.1) !important;
+  padding: 0.4rem 0.75rem !important;
+  border-radius: 6px !important;
+  display: inline-block !important;
+}
+
+/* Lien wrapping le bouton */
+.available-exams-page .exam-card a {
+  text-decoration: none !important;
+  width: 100% !important;
+}
+
+/* Bouton "Passer l'examen" */
+.available-exams-page .exam-card button {
+  width: 100% !important;
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0.75rem !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease !important;
+}
+
+.available-exams-page .exam-card button:hover {
+  background: #4338ca !important;
+}
+/* ==========================================
+   STYLE PAGE RÉSULTAT D'EXAMEN ÉTUDIANT (exam-result-page)
+   ========================================== */
+
+.exam-result-page {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+  text-align: left !important;
+}
+
+/* Titres */
+.exam-result-page h1 {
+  color: #f8fafc !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  margin: 0 !important;
+}
+
+.exam-result-page h2 {
+  color: #f8fafc !important;
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
+  margin-top: 1rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Encadré du score global */
+.exam-result-page .result-score {
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  padding: 1.5rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.25rem !important;
+}
+
+.exam-result-page .score-value {
+  font-size: 2.2rem !important;
+  font-weight: 800 !important;
+  color: #10b981 !important;
+}
+
+.exam-result-page .score-label {
+  color: #8e9ab0 !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Liste des questions corrigées */
+.exam-result-page .correction-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.25rem !important;
+}
+
+/* Carte par question */
+.exam-result-page .correction-list > li {
+  background: #131927 !important;
+  border-radius: 14px !important;
+  padding: 1.5rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+  box-sizing: border-box !important;
+}
+
+/* Bordure verte si réussie / rouge si ratée */
+.exam-result-page .correction-list > li.correction-correct {
+  border: 1px solid rgba(16, 185, 129, 0.25) !important;
+  border-left: 5px solid #10b981 !important;
+}
+
+.exam-result-page .correction-list > li.correction-incorrect {
+  border: 1px solid rgba(239, 68, 68, 0.25) !important;
+  border-left: 5px solid #ef4444 !important;
+}
+
+/* Intitulé de la question */
+.exam-result-page .correction-question {
+  color: #f8fafc !important;
+  font-weight: 700 !important;
+  font-size: 1.05rem !important;
+  margin: 0 !important;
+}
+
+/* Liste des options */
+.exam-result-page .correction-list ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
+}
+
+/* Style de base des réponses */
+.exam-result-page .correction-list ul li {
+  background: #0b0e17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 8px !important;
+  padding: 0.75rem 1rem !important;
+  color: #8e9ab0 !important;
+  font-size: 0.95rem !important;
+}
+
+/* La bonne réponse */
+.exam-result-page .correction-list ul li.choice-correct {
+  background: rgba(16, 185, 129, 0.1) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+  color: #34d399 !important;
+  font-weight: 600 !important;
+}
+
+/* La mauvaise réponse choisie */
+.exam-result-page .correction-list ul li.choice-wrong {
+  background: rgba(239, 68, 68, 0.1) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+  color: #fca5a5 !important;
+  font-weight: 600 !important;
+}
+
+/* Affichage des points */
+.exam-result-page .correction-points {
+  margin: 0 !important;
+  font-size: 0.9rem !important;
+  font-weight: 700 !important;
+  color: #8e9ab0 !important;
+  text-align: right !important;
+}
+
+/* Liens de retour */
+.exam-result-page a {
+  color: #a5b4fc !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  display: inline-block !important;
+}
+
+.exam-result-page a:hover {
+  text-decoration: underline !important;
+  color: #ffffff !important;
+}
+/* ==========================================
+   STYLE PAGE MES RÉSULTATS (my-results-page)
+   ========================================== */
+
+.my-results-page {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+  text-align: left !important;
+}
+
+/* Titre principal */
+.my-results-page h1 {
+  color: #f8fafc !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  margin: 0 !important;
+}
+
+/* Tableau des résultats */
+.my-results-page table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+/* Entête du tableau */
+.my-results-page th {
+  background: #1a2234 !important;
+  color: #8e9ab0 !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 1rem 1.25rem !important;
+  text-align: left !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Lignes du tableau */
+.my-results-page td {
+  padding: 1rem 1.25rem !important;
+  color: #cbd5e1 !important;
+  font-size: 0.95rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+  vertical-align: middle !important;
+}
+
+.my-results-page tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+.my-results-page tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+/* Style de la note */
+.my-results-page td:nth-child(3) {
+  font-weight: 700 !important;
+  color: #10b981 !important;
+}
+
+/* Lien "Voir la correction" */
+.my-results-page td a {
+  color: #818cf8 !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  padding: 0.4rem 0.8rem !important;
+  border-radius: 6px !important;
+  background: rgba(99, 102, 241, 0.1) !important;
+  transition: all 0.2s ease !important;
+  display: inline-block !important;
+}
+
+.my-results-page td a:hover {
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+}
+/* ==========================================
+   STYLE PASSAGE D'EXAMEN (take-exam-page)
+   ========================================== */
+
+.take-exam-page {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+  text-align: left !important;
+}
+
+/* Titre et description */
+.take-exam-page h1 {
+  color: #f8fafc !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  margin: 0 !important;
+}
+
+.take-exam-page > p {
+  color: #8e9ab0 !important;
+  font-size: 1rem !important;
+  margin: 0 !important;
+}
+
+/* Formulaire d'examen */
+.take-exam-page form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+}
+
+/* Blocs de questions */
+.take-exam-page .question-block {
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  padding: 1.5rem !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+}
+
+.take-exam-page .question-block legend {
+  color: #818cf8 !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  padding: 0 0.5rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.take-exam-page .question-block p {
+  color: #f8fafc !important;
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+}
+
+/* Options de réponse radio */
+.take-exam-page .choice-option {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  background: #0b0e17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 8px !important;
+  padding: 0.85rem 1rem !important;
+  color: #cbd5e1 !important;
+  font-size: 0.95rem !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.take-exam-page .choice-option:hover {
+  border-color: rgba(79, 70, 229, 0.4) !important;
+  background: rgba(79, 70, 229, 0.05) !important;
+}
+
+.take-exam-page .choice-option input[type="radio"] {
+  accent-color: #4f46e5 !important;
+  width: 1.1rem !important;
+  height: 1.1rem !important;
+  cursor: pointer !important;
+}
+
+/* Suivi de progression */
+.take-exam-page .progress-note {
+  color: #a5b4fc !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  margin: 0 !important;
+}
+
+/* Bouton principal de soumission */
+.take-exam-page button[type="submit"] {
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0.85rem 1.5rem !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+  align-self: flex-start !important;
+  transition: background 0.2s ease !important;
+}
+
+.take-exam-page button[type="submit"]:hover {
+  background: #4338ca !important;
+}
+
+/* Modale de confirmation (Overlay) */
+.take-exam-page .confirm-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.75) !important;
+  backdrop-filter: blur(4px) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 1000 !important;
+}
+
+/* Boîte de confirmation */
+.take-exam-page .confirm-box {
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 16px !important;
+  padding: 2rem !important;
+  max-width: 440px !important;
+  width: 90% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.25rem !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5) !important;
+}
+
+.take-exam-page .confirm-box p {
+  color: #cbd5e1 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+
+/* Boutons de la modale */
+.take-exam-page .confirm-box button:first-of-type {
+  background: #10b981 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0.75rem !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+}
+
+.take-exam-page .confirm-box button:last-of-type {
+  background: transparent !important;
+  color: #8e9ab0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 0.75rem !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+}
+
+.take-exam-page .confirm-box button:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
+
+/* ==========================================
+   NETTOYAGE & UNIFICATION GLOBALE (ANTI-SAUCISSON)
+   ========================================== */
+
+/* 1. Dé-saucissonnage global : Supprime les fonds/bordures sur les wrappers et conteneurs intermédiaires */
+.admin-exams-page,
+.exams-page,
+.admin-exams-page *,
+.exams-page * {
+  box-sizing: border-box !important;
+}
+
+/* Réinitialise les divs intermédiaires pour qu'elles ne fassent pas de boîtes noires partout */
+.admin-exams-page > div,
+.exams-page > div {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 2. Barre de Navigation / Header de l'app (Barre du haut) */
+header, 
+.app-header, 
+.navbar {
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  padding: 0.85rem 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* 3. Menus et Onglets (Tableau de bord, Étudiants, Cours, Examens) */
+nav, 
+.nav-links, 
+.admin-nav {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  display: flex !important;
+  gap: 0.5rem !important;
+  margin-bottom: 2rem !important;
+}
+
+nav a, 
+.nav-links a, 
+.admin-nav a {
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #8e9ab0 !important;
+  padding: 0.6rem 1.25rem !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+nav a:hover, 
+nav a.active, 
+.nav-links a:hover, 
+.nav-links a.active {
+  background: #1e293b !important;
+  border-color: rgba(99, 102, 241, 0.4) !important;
+  color: #ffffff !important;
+}
+
+/* 4. Alignement du titre "Gestion des examens" et du bouton "+ Nouvel examen" */
+.admin-exams-page h1,
+.exams-page h1 {
+  color: #f8fafc !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 1.25rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* Style du bouton "+ Nouvel examen" */
+.admin-exams-page button,
+.exams-page button,
+.admin-exams-page .btn-create,
+.exams-page .btn-create {
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 0.65rem 1.25rem !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease !important;
+}
+
+.admin-exams-page button:hover,
+.exams-page button:hover {
+  background: #4338ca !important;
+}
+
+/* 5. Formulaire d'ajout / modification (Carte unique propre) */
+.admin-exams-page form,
+.exams-page form {
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 16px !important;
+  padding: 1.75rem !important;
+  max-width: 600px !important;
+  width: 100% !important;
+  margin: 0 0 2rem 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.1rem !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Inputs & Selects du formulaire */
+.admin-exams-page form input,
+.admin-exams-page form select,
+.admin-exams-page form textarea,
+.exams-page form input,
+.exams-page form select,
+.exams-page form textarea {
+  background: #0b0e17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  padding: 0.75rem 1rem !important;
+  color: #f8fafc !important;
+  font-size: 0.95rem !important;
+  width: 100% !important;
+}
+
+.admin-exams-page form input:focus,
+.admin-exams-page form select:focus,
+.admin-exams-page form textarea:focus {
+  outline: none !important;
+  border-color: #6366f1 !important;
+}
+
+/* 6. Tableau unique unifié */
+.admin-exams-page table,
+.exams-page table {
+  width: 100% !important;
+  background: #131927 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  overflow: hidden !important;
+  margin-top: 1rem !important;
+}
+
+.admin-exams-page th,
+.exams-page th {
+  background: #1a2234 !important;
+  color: #8e9ab0 !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 1rem 1.25rem !important;
+  text-align: left !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.admin-exams-page td,
+.exams-page td {
+  padding: 1rem 1.25rem !important;
+  color: #cbd5e1 !important;
+  font-size: 0.95rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+  vertical-align: middle !important;
+}
+
+.admin-exams-page tr:last-child td,
+.exams-page tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* Boutons d'action dans le tableau (Questions, Résultats, Modifier, Supprimer) */
+.admin-exams-page td a,
+.exams-page td a,
+.admin-exams-page td button,
+.exams-page td button {
+  padding: 0.4rem 0.8rem !important;
+  font-size: 0.85rem !important;
+  border-radius: 6px !important;
+  margin-right: 0.4rem !important;
+  display: inline-block !important;
+  text-decoration: none !important;
 }
